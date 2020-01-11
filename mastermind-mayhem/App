@@ -1,0 +1,58 @@
+import clock from "clock";
+import document from "document";
+import { preferences } from "user-settings";
+import * as util from "../common/utils";
+
+// Update the clock every minute
+clock.granularity = "seconds";
+
+// Get a handle on the <text> element
+const currTime = document.getElementById("currTime");
+const currDate = document.getElementById("currDate");
+const bg = document.getElementById("background");
+const tzTxt = document.getElementById("tz");
+
+let option = 0;
+
+let updateClock = function(t) {
+  let hours = util.zeroPad(t.getHours());
+  hours = util.zeroPad(hours % 12 || 12);
+  let utcHours = util.zeroPad(t.getUTCHours());
+  utcHours = util.zeroPad(utcHours % 12 || 12);
+  let mins = util.zeroPad(t.getMinutes());
+  let secs = util.zeroPad(t.getSeconds());
+
+  if (option == 0) {
+    tzTxt.text = ``;
+    currTime.text = `${hours}:${mins}:${secs}`;
+  } else {
+    tzTxt.text = `UTC`;
+    currTime.text = `${utcHours}:${mins}:${secs}`;
+  }
+ 
+  let year = t.getFullYear();
+  let mon = util.zeroPad(t.getMonth()+1);
+  let day = util.zeroPad(t.getDate());
+  if (option == 1) {
+    year = t.getUTCFullYear();
+    mon = util.zeroPad(t.getUTCMonth()+1);
+    day = util.zeroPad(t.getUTCDate());
+  }
+
+  currDate.text = `${day},${mon},${year}`;
+ 
+}
+
+// Update the <text> element every tick with the current time
+clock.ontick = (e) => {
+  updateClock(e.date);  
+}
+
+bg.onclick = function() {
+  if (option == 0) {
+    option = 1;
+  } else {
+    option = 0;
+  }
+  updateClock(new Date());
+};

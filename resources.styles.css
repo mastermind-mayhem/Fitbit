@@ -1,0 +1,42 @@
+#background {
+  width: 100%;
+  height: 100%;
+}
+
+.time {
+  font-size: 50;
+  text-length: 32;
+  text-anchor: middle;
+  fill: aqua;
+}
+
+.small-text {
+  font-size: 30;
+  fill: aqua;
+}
+
+#tz {
+  text-length: 32;
+  text-anchor: "end";
+  x: 100%;
+  y: 10%;
+}
+
+#label {
+  text-length: 32;
+  text-anchor: middle;
+  x: 50%;
+  y: 35%;
+}
+
+#currTime {
+  x: 50%;
+  y: 50%;
+  text-anchor: middle;
+}
+
+#currDate {
+  x: 50%;
+  y: 65%;
+  text-anchor: middle;
+}

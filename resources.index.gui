@@ -1,0 +1,8 @@
+<svg class="background">
+  <rect id="background" pointer-events="visible">
+    <text id="tz" class="small-text">UTC</text>
+    <text id="currTime" class="time"/>
+    <text id="currDate" class="time"/>
+    <text id="label" class="time">Takeoff_In</text>
+  </rect>
+</svg>
